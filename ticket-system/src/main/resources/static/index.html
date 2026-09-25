@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Student Support &amp; Ticket Management</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">🎓 Student Support &amp; Ticket Management</div>
+    <div class="who">
+      <label for="userSelect">Acting as:</label>
+      <select id="userSelect"></select>
+    </div>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab-btn active" data-tab="tickets">Tickets</button>
+    <button class="tab-btn" data-tab="new">Raise Ticket</button>
+    <button class="tab-btn" data-tab="dashboard">Dashboard</button>
+  </nav>
+
+  <main>
+    <!-- TICKETS LIST -->
+    <section id="tab-tickets" class="tab-panel active">
+      <div class="filters">
+        <select id="fStatus"><option value="">All statuses</option></select>
+        <select id="fPriority"><option value="">All priorities</option></select>
+        <select id="fCategory"><option value="">All categories</option></select>
+        <label class="chk"><input type="checkbox" id="fBreached" /> Breached only</label>
+        <label class="chk"><input type="checkbox" id="fMine" /> Assigned to me / raised by me</label>
+        <button id="refreshBtn">Refresh</button>
+      </div>
+      <div id="ticketList" class="ticket-list"></div>
+    </section>
+
+    <!-- RAISE TICKET -->
+    <section id="tab-new" class="tab-panel">
+      <form id="newTicketForm" class="card form-card">
+        <h2>Raise a Support Ticket</h2>
+        <label>Title
+          <input type="text" id="ntTitle" required maxlength="150" placeholder="Short summary of the issue" />
+        </label>
+        <label>Description
+          <textarea id="ntDescription" rows="4" placeholder="Details that will help staff resolve this"></textarea>
+        </label>
+        <div class="row">
+          <label>Category
+            <select id="ntCategory"></select>
+          </label>
+          <label>Priority
+            <select id="ntPriority"></select>
+          </label>
+        </div>
+        <button type="submit">Submit Ticket</button>
+        <p id="newTicketMsg" class="msg"></p>
+      </form>
+    </section>
+
+    <!-- DASHBOARD -->
+    <section id="tab-dashboard" class="tab-panel">
+      <div id="dashboardCards" class="dash-cards"></div>
+      <div class="dash-tables">
+        <div class="card">
+          <h3>By Status</h3>
+          <div id="byStatusTable"></div>
+        </div>
+        <div class="card">
+          <h3>By Priority</h3>
+          <div id="byPriorityTable"></div>
+        </div>
+        <div class="card">
+          <h3>By Category</h3>
+          <div id="byCategoryTable"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- TICKET DETAIL MODAL -->
+  <div id="detailModal" class="modal-overlay">
+    <div class="modal">
+      <button id="closeModal" class="close-btn">&times;</button>
+      <div id="detailContent"></div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

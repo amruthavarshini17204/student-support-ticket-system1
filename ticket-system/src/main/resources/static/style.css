@@ -1,0 +1,218 @@
+:root {
+  --primary: #2f5fd6;
+  --primary-dark: #1e3f96;
+  --bg: #f4f6fb;
+  --card: #ffffff;
+  --text: #1c1f2b;
+  --muted: #6b7280;
+  --border: #e2e6f0;
+  --urgent: #d9364b;
+  --high: #e07a1f;
+  --medium: #c9a227;
+  --low: #4a8f4a;
+  --breach: #ffe4e6;
+  --breach-text: #9f1239;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--primary);
+  color: white;
+  padding: 14px 24px;
+}
+.brand { font-size: 18px; font-weight: 600; }
+.who { display: flex; align-items: center; gap: 8px; font-size: 14px; }
+.who select { padding: 6px 10px; border-radius: 6px; border: none; }
+
+.tabs {
+  display: flex;
+  gap: 4px;
+  padding: 10px 24px 0;
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+}
+.tab-btn {
+  border: none;
+  background: none;
+  padding: 10px 18px;
+  font-size: 14px;
+  cursor: pointer;
+  color: var(--muted);
+  border-bottom: 3px solid transparent;
+}
+.tab-btn.active { color: var(--primary); border-color: var(--primary); font-weight: 600; }
+
+main { padding: 20px 24px 60px; max-width: 1100px; margin: 0 auto; }
+
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.filters select, .filters button {
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: white;
+}
+.filters button {
+  background: var(--primary);
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+.chk { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); }
+
+.ticket-list { display: flex; flex-direction: column; gap: 10px; }
+
+.ticket-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 16px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  transition: box-shadow .15s;
+}
+.ticket-card:hover { box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+.ticket-card.breached { background: var(--breach); border-color: #f3b4bf; }
+
+.ticket-main { flex: 1; min-width: 0; }
+.ticket-title { font-weight: 600; margin-bottom: 4px; }
+.ticket-meta { font-size: 12px; color: var(--muted); display: flex; gap: 10px; flex-wrap: wrap; }
+
+.badge {
+  display: inline-block;
+  padding: 2px 9px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: .3px;
+}
+.badge.URGENT { background: var(--urgent); }
+.badge.HIGH { background: var(--high); }
+.badge.MEDIUM { background: var(--medium); color: #3a2e00; }
+.badge.LOW { background: var(--low); }
+
+.status-pill {
+  display: inline-block;
+  padding: 2px 9px;
+  border-radius: 12px;
+  font-size: 11px;
+  background: #eef1f8;
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.breach-tag { color: var(--breach-text); font-weight: 700; font-size: 11px; }
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px 20px;
+}
+
+.form-card { max-width: 560px; display: flex; flex-direction: column; gap: 14px; }
+.form-card label { display: flex; flex-direction: column; font-size: 13px; color: var(--muted); gap: 6px; }
+.form-card input, .form-card select, .form-card textarea {
+  padding: 9px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  font-size: 14px;
+  font-family: inherit;
+}
+.form-card .row { display: flex; gap: 14px; }
+.form-card .row label { flex: 1; }
+.form-card button {
+  align-self: flex-start;
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+.msg { font-size: 13px; color: var(--primary-dark); min-height: 18px; }
+
+.dash-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.dash-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  text-align: center;
+}
+.dash-card .num { font-size: 26px; font-weight: 700; color: var(--primary); }
+.dash-card.alert .num { color: var(--urgent); }
+.dash-card .label { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+.dash-tables { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+.mini-row { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px dashed var(--border); font-size: 13px; }
+
+.modal-overlay {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.4);
+  align-items: center; justify-content: center;
+  z-index: 50;
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  width: min(560px, 92vw);
+  max-height: 86vh;
+  overflow-y: auto;
+  position: relative;
+}
+.close-btn {
+  position: absolute; top: 12px; right: 14px;
+  border: none; background: none; font-size: 22px; cursor: pointer; color: var(--muted);
+}
+
+.activity-item {
+  border-left: 2px solid var(--border);
+  padding: 6px 0 6px 14px;
+  margin-left: 4px;
+  font-size: 13px;
+}
+.activity-item .a-meta { color: var(--muted); font-size: 11px; }
+
+.detail-actions { display: flex; gap: 8px; flex-wrap: wrap; margin: 14px 0; }
+.detail-actions select, .detail-actions button, .detail-actions input {
+  padding: 7px 9px; border-radius: 6px; border: 1px solid var(--border); font-size: 13px;
+}
+.detail-actions button { background: var(--primary); color: white; border: none; cursor: pointer; }
+
+.comment-box { display: flex; gap: 8px; margin-top: 10px; }
+.comment-box input { flex: 1; padding: 8px; border-radius: 6px; border: 1px solid var(--border); }
+.comment-box button { background: var(--primary-dark); color: white; border: none; border-radius: 6px; padding: 8px 14px; cursor: pointer; }
